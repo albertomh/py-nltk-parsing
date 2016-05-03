@@ -25,3 +25,15 @@ def getAvgNodeLength(label):
             for i in punct:
                 if i in word:
                     wordlist.remove(word)
+
+### CREATE LIST OF LENGTHS (IN WORDS) OF NODES.
+    l_len = list()
+    for wordlist in l_leaves:
+        l_len.append(len(wordlist))
+
+### REMOVE ITEMS OF LENGTH 0 WHICH WOULD OTHERWISE AFFECT AVERGAGE.
+    l_len = [i for i in l_len if i != 0]
+    
+### CALCULATE AVERAGE LENGTH ROUNDED TO 3 DECIMAL PLACES AND RETURN THE VALUE.
+    avg_len = round(int(sum(l_len))/float(len(l_len)), 3)
+    return avg_len
