@@ -37,3 +37,20 @@ def getAvgNodeLength(label):
 ### CALCULATE AVERAGE LENGTH ROUNDED TO 3 DECIMAL PLACES AND RETURN THE VALUE.
     avg_len = round(int(sum(l_len))/float(len(l_len)), 3)
     return avg_len
+    
+def pcfgParse(sentence):
+    
+    productions = list()
+    root = nltk.Nonterminal('S')
+    
+    for tree in nltk.corpus.treebank.parsed_sents():
+        productions += tree.productions()
+
+    grammar = nltk.induce_pcfg(root, productions)
+    PCFGParser = nltk.ViterbiParser(grammar)
+
+    s_sent = sentence.split()
+    parsed_sent = PCFGParser.parse(s_sent)
+
+    for p in parsed_sent:
+        print p
