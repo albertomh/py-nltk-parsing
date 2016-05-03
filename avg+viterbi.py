@@ -15,3 +15,13 @@ def getAvgNodeLength(label):
         for node in tree:
             if node.label() == label:
                 l_leaves.append(node.leaves())
+
+### CREATED OWN LIST OF PUNCTUATION TO EXCLUDE SINCE USING string.punctuation WOULD
+### HAVE DELETED WORDS SUCH AS "Dr.", "World-Wide", "U.S.", etc. WHICH ARE OF INTEREST.
+    punct = [u"*", u",", u"&", u"'"]
+
+    for wordlist in l_sbj:
+        for word in wordlist:
+            for i in punct:
+                if i in word:
+                    wordlist.remove(word)
